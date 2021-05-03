@@ -1,0 +1,40 @@
+.foot_bar{
+    position: bottom;
+    background-color: #282c34;
+    min-height: 5vh;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    box-shadow: -1px -5px 6px #888;
+    margin-top: 20px;
+    padding-bottom:5px;
+    padding-top:5px;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    .foot_left{
+        display: grid;
+        justify-content: center;
+        align-content: center;
+
+    }
+
+    .foot_right{
+        display: grid;
+        justify-content: center;
+        align-content: center;
+
+    }
+
+    .foot_right{
+        display:grid;
+        justify-content: center;
+        align-content: center;
+
+    }
+}

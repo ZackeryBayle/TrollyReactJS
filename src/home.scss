@@ -1,0 +1,50 @@
+
+.home_container {
+
+
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: 90vh;
+
+    .home_contact_container{
+
+
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        height: auto;
+
+        .home_search_container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height:auto;
+            width: 80vw;
+            margin-top: 45px;
+            position: 10px, 10px;
+
+            .Owner_serch {
+                width: 400px;
+            }
+            .home_importaant_snips{
+                width: 400px;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .home_contact_log{
+            display:flex;
+            flex-direction: column;
+            margin-bottom: 60px;
+            margin-top: 30px;
+
+                ul{
+                    display: grid;
+                    grid-template-rows: 2fr;
+                    align-items: center;
+                    justify-content: center;
+                }
+        }
+    }
+
+}
