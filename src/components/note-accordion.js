@@ -5,6 +5,7 @@ import { Accordion, Card } from "react-bootstrap";
 
 export default function Notes(props){
     // const [isFound, setIsFound] = useState(false);
+    console.log(props.user[0])
     return (
         <div>
             {props.user[0] ?

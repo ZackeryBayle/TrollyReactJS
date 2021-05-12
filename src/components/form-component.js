@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import axios from 'axios';
 import {  Button, Col, Form, FormControl, InputGroup } from "react-bootstrap";
 
 
@@ -12,39 +13,41 @@ export default function FormComponent(props) {
     const [email, setEmail] = useState("");
     const [serial, setSerial] = useState(null);
     const [userData, setUserData] = useState({
-        firsName:"",
-        lastName:"",
-        email:"",
-        serial:null
+
+        email:String,
+        firstName:String,
+        lastName:String,
+        serial:Number
     });
 
+
+    const [formGridCrossCheck, setformGridCrossCheck] = useState(false);
+    const [fetchError, setFetchError] = useState();
+    const [ownerNotes, setOwnerNotes] = useState([])
+
     const emailUpdate = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         if (e.target.id === "email"){
-            // props.onChange(e.target.value);
-            // console.log(props.value + "Props Value")
-            // setEmail(e.target.value);
-            // props.onChange(e.target.value);
-            // updateSearch(e);
-            
+            setEmail(e.target.value);
+            updateSearch();
         }
     }
     const firstNameUpdate = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         if (e.target.id === "firstName"){
             setFirstName(e.target.value);
             updateSearch(e);
         }
     }
     const lastNameUpdate = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         if (e.target.id === "lastName"){
             setLastName(e.target.value);
             updateSearch(e);
         }
     }
     const serialUpdate = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         if (e.target.id === "serial"){
             setSerial(e.target.value);
             updateSearch(e);
@@ -52,7 +55,7 @@ export default function FormComponent(props) {
     }
 
     const updateSearch = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         setUserData({
             "firstName":firstName,
@@ -60,10 +63,48 @@ export default function FormComponent(props) {
             "email":email,
             "serial":serial
         })
+        searchFormSubmit();
     }
 
+    const crossCheckSub = (e) =>{
+        const check = e.target.value;
 
-    const hookemail=(e)=>{return email}
+        // crossCheckSearch()
+
+    }
+
+    const searchFormSubmit = (e) => {
+        console.log("Submit Search Form...")
+        // const nameSearch = (e) => {
+        //     axios.get(`http://localhost:8080/api/Users/name/${firstName} ${lastName}`)
+        //         .then(response => {
+        //             console.log(response)
+        //             // setUserData(response.data)
+        //         })
+        //         .catch( error => {
+        //             console.log(error)
+        //         })
+        // }
+
+
+
+        const emailSearch =(e) => {
+            axios.get(`http://localhost:8080/api/Users/email/${email}`)
+                .then( response => {
+                // console.log(response.data);
+                // setUserData(response.data)
+                })
+                .catch( error => {
+                    console.log(error)
+                })
+        }
+
+        if (email !== null){
+            emailSearch();
+        }
+
+    }
+
         
         return (
             <div className="home_search_container">
@@ -71,7 +112,7 @@ export default function FormComponent(props) {
                         <Form.Row>
                             <Form.Group as={Col} >
                                 <Form.Label></Form.Label>
-                                <Form.Control id="email" type="email" placeholder="Enter Email"   />
+                                <Form.Control id="email" type="email" placeholder="Enter Email" onChange={emailUpdate}  />
                             </Form.Group>
 
                             <Form.Group as={Col} >
@@ -91,7 +132,7 @@ export default function FormComponent(props) {
                             <Form.Check type="switch" label="Cross Check" id="crossCheck" />
                         </Form.Group>
 
-                        <Button >Search</Button>
+                        <Button onSubmit={searchFormSubmit(props.userData)}>Search</Button>
 
                     </Form>
                     
