@@ -17,13 +17,7 @@ export default function Home(){
             <div className="home_contact_container">
                     <FormComponent />
                 <div className="home_contact_log">
-                    <div className="home_logs">
-                        <ul>
-                            <li>
-                                <Notes user={FormComponent} />
-                            </li>
-                        </ul>
-                    </div>
+                    
                     <div className="Hone_notes">
                     <InputGroup>
                         <InputGroup.Prepend>

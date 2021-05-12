@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import axios from 'axios';
 import {  Button, Col, Form, FormControl, InputGroup } from "react-bootstrap";
+import Notes from './note-accordion';
 
 
 export default function FormComponent(props) {
@@ -92,14 +93,14 @@ export default function FormComponent(props) {
             axios.get(`http://localhost:8080/api/Users/email/${email}`)
                 .then( response => {
                 // console.log(response.data);
-                // setUserData(response.data)
+                setUserData(response.data)
                 })
                 .catch( error => {
                     console.log(error)
                 })
         }
 
-        if (email !== null){
+        if (email !== ""){
             emailSearch();
         }
 
@@ -132,9 +133,17 @@ export default function FormComponent(props) {
                             <Form.Check type="switch" label="Cross Check" id="crossCheck" />
                         </Form.Group>
 
-                        <Button onSubmit={searchFormSubmit(props.userData)}>Search</Button>
+                        <Button onSubmit={searchFormSubmit}>Search</Button>
 
                     </Form>
+
+                    <div className="home_logs">
+                        <ul>
+                            <li>
+                                <Notes user={userData} />
+                            </li>
+                        </ul>
+                    </div>
                     
 
                     <div className="home_important_snips">

@@ -2,12 +2,21 @@ import React from 'react';
 import { Accordion, Card } from "react-bootstrap";
 
 
-
 export default function Notes(props){
     // const [isFound, setIsFound] = useState(false);
-    console.log(props.user[0])
+    console.log(props.user)
+
+    function UserList(props){
+        const users = Array.from(props.users);
+        const listUser = users.map((user, id) =>
+            <li key={id}>{user}</li>
+        );
+        return(<ul>{listUser}</ul>)
+    }
+
     return (
         <div>
+            {/* <UserList users={props.user}/> this list */}
             {props.user[0] ?
                 (
                     <div className="notes_visable">
@@ -15,8 +24,8 @@ export default function Notes(props){
                         <Accordion >
                             <Card>
                                 <Accordion.Toggle as={Card.Header} eventKey="0">
-                                    <div>{props.user[0].firstName} {props.user[0].lastName}</div>
-                                    <div>Serial:{props.user[0].description.serial}</div>
+                                    <div>NAME {props.user[0].firstName} {props.user[0].lastName}</div>
+                                    <div>Serial: {props.user[0].description.serial}</div>
                                 </Accordion.Toggle>
                                 <Accordion.Collapse eventKey="0">
                                     <Card.Body>
@@ -28,6 +37,8 @@ export default function Notes(props){
                             </Card>
                         </Accordion>
                     </div>
+
+                    
                 )
                 : 
                 (
