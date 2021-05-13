@@ -4,7 +4,7 @@ import { Accordion, Card } from "react-bootstrap";
 
 export default function Notes(props){
     // const [isFound, setIsFound] = useState(false);
-    console.log(props.user)
+    // console.log(props.user)
 
     function UserList(props){
         const users = Array.from(props.users);
