@@ -55,10 +55,10 @@ export default function FormComponent(props) {
         console.log("Submit Search Form...")
 
 
-        const nameSearch = (e) => {
-            axios.get(`http://localhost:8080/api/Users/name/${firstName} ${lastName}`)
+        const nameSearch = (event) => {
+            axios.get(`http://localhost:8080/api/Users/name/${firstName}" "${lastName}`)
                 .then(response => {
-                    // console.log(response)
+                    console.log("Responce from nameSearch" + response)
                     setUserData(response.data)
                 })
                 .catch( error => {
@@ -71,7 +71,7 @@ export default function FormComponent(props) {
         const emailSearch =(event) => {
             axios.get(`http://localhost:8080/api/Users/email/${email}`)
                 .then( response => {
-                // console.log(response.data);
+                console.log("Responce from emailSearch " + response.data);
                 setUserData(response.data)
                 })
                 .catch( error => {
@@ -80,12 +80,10 @@ export default function FormComponent(props) {
         }
 
 
-        const serialSearch =(e) => {
+        const serialSearch =(event) => {
             axios.get(`http://localhost:8080/api/Users/serial/${serial}`)
                 .then( response => {
                 // console.log(response.data);
-                
-
                 setUserData(response.data)
                 })
                 .catch( error => {

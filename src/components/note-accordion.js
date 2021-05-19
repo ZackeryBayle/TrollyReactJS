@@ -28,6 +28,7 @@ export default function Notes(props){
             {props.user[0] ?
                 (
                     <div className="notes_visable" onChange={UserList}>
+                        {console.log(props.user[0])}
                         
                         <Accordion >
                             <Card>
@@ -51,6 +52,7 @@ export default function Notes(props){
                 : 
                 (
                     <div className="notes_invisable"> 
+                        {console.log(props.user)}
                         <p>No Owner Found</p>
                     </div>
                 )
