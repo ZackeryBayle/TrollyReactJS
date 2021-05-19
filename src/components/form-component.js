@@ -26,9 +26,13 @@ export default function FormComponent(props) {
     const [fetchError, setFetchError] = useState();
     const [ownerNotes, setOwnerNotes] = useState([])
 
+    const handleClick = event => {
+        event.preventDefault();
+        updateSearch();
+      }
 
-    const updateSearch = (e) => {
-        
+
+    const updateSearch = (event) => {
         console.log("updateSearch running...")
 
         setUserData({
@@ -47,24 +51,24 @@ export default function FormComponent(props) {
 
     }
 
-    const searchFormSubmit = (e) => {
+    const searchFormSubmit = (event) => {
         console.log("Submit Search Form...")
 
 
-        // const nameSearch = (e) => {
-        //     axios.get(`http://localhost:8080/api/Users/name/${firstName} ${lastName}`)
-        //         .then(response => {
-        //             // console.log(response)
-        //             setUserData(response.data)
-        //         })
-        //         .catch( error => {
-        //             console.log(error)
-        //         })
-        // } 
+        const nameSearch = (e) => {
+            axios.get(`http://localhost:8080/api/Users/name/${firstName} ${lastName}`)
+                .then(response => {
+                    // console.log(response)
+                    setUserData(response.data)
+                })
+                .catch( error => {
+                    console.log(error)
+                })
+        } 
 
 
 
-        const emailSearch =(e) => {
+        const emailSearch =(event) => {
             axios.get(`http://localhost:8080/api/Users/email/${email}`)
                 .then( response => {
                 // console.log(response.data);
@@ -76,19 +80,27 @@ export default function FormComponent(props) {
         }
 
 
-        // const serialSearch =(e) => {
-        //     axios.get(`http://localhost:8080/api/Users/serial/${serial}`)
-        //         .then( response => {
-        //         // console.log(response.data);
-        //         setUserData(response.data)
-        //         })
-        //         .catch( error => {
-        //             console.log(error)
-        //         })
-        // }
+        const serialSearch =(e) => {
+            axios.get(`http://localhost:8080/api/Users/serial/${serial}`)
+                .then( response => {
+                // console.log(response.data);
+                
+
+                setUserData(response.data)
+                })
+                .catch( error => {
+                    console.log(error)
+                })
+        }
 
         if (email !== ""){
             emailSearch();
+        }
+        if (email === "" && firstName !== "") {
+            nameSearch();
+        }
+        if(email === "" && firstName === "" && serial !== "") {
+            serialSearch();
         }
 
 
@@ -97,7 +109,7 @@ export default function FormComponent(props) {
         
         return (
             <div className="home_search_container">
-                    <Form className="Owner_serch" noValidate validated={validated} onSubmit={updateSearch} >
+                    <Form className="Owner_serch" noValidate validated={validated} >
                         <Form.Row>
                             <Form.Group as={Col} >
                                 <Form.Label></Form.Label>
@@ -121,7 +133,7 @@ export default function FormComponent(props) {
                             <Form.Check type="switch" label="Cross Check" id="crossCheck" />
                         </Form.Group>
 
-                        <Button type="submit" onSubmit={updateSearch}>Search</Button>
+                        <Button type="button" onClick={ handleClick } >Search</Button>
 
                     </Form>
 
