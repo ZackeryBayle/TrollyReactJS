@@ -1,26 +1,34 @@
-import React from 'react';
+import { data } from 'autoprefixer';
+import React, { useState } from 'react';
 import { Accordion, Card } from "react-bootstrap";
 
 
 export default function Notes(props){
-    // const [isFound, setIsFound] = useState(false);
-    console.log(props.user)
+    const [temp, setTemp] = useState({
+        "firstName":String,
+        "lastName":String,
+        "email":String,
+        "serial":Number
+    })
+    // console.log(props.user)
 
-    function UserList(props){
-        const users = Array.from(props.users);
-        const listUser = users.map((user, id) =>
-            <li key={id}>{user}</li>
-        );
-        return(<ul>{listUser}</ul>)
+    function UserList(){
+        const users = Array.from(props.user);
+        console.log(users)
+        var data =users.map((e,id) => {
+            console.log(e);
+            console.log(id)
+        });
+        return <ul>{data.firstName}</ul>
     }
 
     return (
         <div>
-            {/* <UserList users={props.user}/> this list */}
+            
             {props.user[0] ?
                 (
-                    <div className="notes_visable">
-                        {/* {console.log(props.user[0].serial)} */}
+                    <div className="notes_visable" onChange={UserList}>
+                        
                         <Accordion >
                             <Card>
                                 <Accordion.Toggle as={Card.Header} eventKey="0">
